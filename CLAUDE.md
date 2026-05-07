@@ -71,9 +71,9 @@ docs/
 | 2 | Sulfuras guard clause, 중첩 제거 | 없음 | 완료 |
 | 3 | `_increment_quality` / `_decrement_quality` 헬퍼 추출 | 없음 | 완료 |
 | 4 | sell_in 감소 타이밍 통합 (quality 이중 변경 제거) | 없음 | 완료 |
-| 5 | 아이템 타입별 메서드 분리, dispatch 패턴 | 없음 | 미시작 |
+| 5 | 아이템 타입별 메서드 분리, dispatch 패턴 | 없음 | 완료 |
 | 6 | Conjured 아이템 추가 (TDD) | 있음(신규) | 미시작 |
 
 ### 현재 진행 위치
 
-Phase 4 완료. Phase 5 설계 문서 작성 전.
+Phase 5 완료. Phase 6 설계 문서 작성 전.

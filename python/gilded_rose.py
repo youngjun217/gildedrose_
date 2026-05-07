@@ -11,24 +11,33 @@ class GildedRose(object):
         for item in self.items:
             if item.name == SULFURAS:
                 continue
-
-            item.sell_in -= 1
-
-            if item.name == BACKSTAGE:
-                if item.sell_in < 0:
-                    item.quality = 0
-                elif item.sell_in < 5:
-                    self._increment_quality(item, 3)
-                elif item.sell_in < 10:
-                    self._increment_quality(item, 2)
-                else:
-                    self._increment_quality(item)
+            elif item.name == BACKSTAGE:
+                self._update_backstage(item)
             elif item.name == AGED_BRIE:
-                amount = 2 if item.sell_in < 0 else 1
-                self._increment_quality(item, amount)
+                self._update_aged_brie(item)
             else:
-                amount = 2 if item.sell_in < 0 else 1
-                self._decrement_quality(item, amount)
+                self._update_normal(item)
+
+    def _update_normal(self, item):
+        item.sell_in -= 1
+        amount = 2 if item.sell_in < 0 else 1
+        self._decrement_quality(item, amount)
+
+    def _update_aged_brie(self, item):
+        item.sell_in -= 1
+        amount = 2 if item.sell_in < 0 else 1
+        self._increment_quality(item, amount)
+
+    def _update_backstage(self, item):
+        item.sell_in -= 1
+        if item.sell_in < 0:
+            item.quality = 0
+        elif item.sell_in < 5:
+            self._increment_quality(item, 3)
+        elif item.sell_in < 10:
+            self._increment_quality(item, 2)
+        else:
+            self._increment_quality(item)
 
     def _increment_quality(self, item, amount=1):
         item.quality = min(50, item.quality + amount)
