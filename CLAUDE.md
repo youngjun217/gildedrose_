@@ -67,7 +67,7 @@ docs/
 | Phase | 내용 | 동작 변경 | 상태 |
 |-------|------|-----------|------|
 | 0 | UnitTest 확보 (18개, coverage 100%) | 없음 | 완료 |
-| 1 | 매직 스트링 → 상수, `+=/-=` 표현 정리 | 없음 | 설계 완료, 미실행 |
+| 1 | 매직 스트링 → 상수, `+=/-=` 표현 정리 | 없음 | 완료 |
 | 2 | Sulfuras guard clause, 중첩 제거 | 없음 | 미시작 |
 | 3 | `_increment_quality` / `_decrement_quality` 헬퍼 추출 | 없음 | 미시작 |
 | 4 | sell_in 감소 타이밍 통합 (quality 이중 변경 제거) | 없음 | 미시작 |
@@ -76,4 +76,4 @@ docs/
 
 ### 현재 진행 위치
 
-Phase 1 설계 문서(`docs/design/phase1_cosmetic.md`) 작성 완료. 사용자 검토 대기 중.
+Phase 1 완료. Phase 2 설계 문서 작성 전.
