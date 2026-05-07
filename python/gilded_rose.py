@@ -13,29 +13,29 @@ class GildedRose(object):
                 continue
 
             if item.name != AGED_BRIE and item.name != BACKSTAGE:
-                if item.quality > 0:
-                    item.quality -= 1
+                self._decrement_quality(item)
             else:
-                if item.quality < 50:
-                    item.quality += 1
-                    if item.name == BACKSTAGE:
-                        if item.sell_in < 11:
-                            if item.quality < 50:
-                                item.quality += 1
-                        if item.sell_in < 6:
-                            if item.quality < 50:
-                                item.quality += 1
+                self._increment_quality(item)
+                if item.name == BACKSTAGE:
+                    if item.sell_in < 11:
+                        self._increment_quality(item)
+                    if item.sell_in < 6:
+                        self._increment_quality(item)
             item.sell_in -= 1
             if item.sell_in < 0:
                 if item.name != AGED_BRIE:
                     if item.name != BACKSTAGE:
-                        if item.quality > 0:
-                            item.quality -= 1
+                        self._decrement_quality(item)
                     else:
                         item.quality = 0
                 else:
-                    if item.quality < 50:
-                        item.quality += 1
+                    self._increment_quality(item)
+
+    def _increment_quality(self, item, amount=1):
+        item.quality = min(50, item.quality + amount)
+
+    def _decrement_quality(self, item, amount=1):
+        item.quality = max(0, item.quality - amount)
 
 
 class Item:

@@ -69,11 +69,11 @@ docs/
 | 0 | UnitTest 확보 (18개, coverage 100%) | 없음 | 완료 |
 | 1 | 매직 스트링 → 상수, `+=/-=` 표현 정리 | 없음 | 완료 |
 | 2 | Sulfuras guard clause, 중첩 제거 | 없음 | 완료 |
-| 3 | `_increment_quality` / `_decrement_quality` 헬퍼 추출 | 없음 | 미시작 |
+| 3 | `_increment_quality` / `_decrement_quality` 헬퍼 추출 | 없음 | 완료 |
 | 4 | sell_in 감소 타이밍 통합 (quality 이중 변경 제거) | 없음 | 미시작 |
 | 5 | 아이템 타입별 메서드 분리, dispatch 패턴 | 없음 | 미시작 |
 | 6 | Conjured 아이템 추가 (TDD) | 있음(신규) | 미시작 |
 
 ### 현재 진행 위치
 
-Phase 2 완료. Phase 3 설계 문서 작성 전.
+Phase 3 완료. Phase 4 설계 문서 작성 전.
