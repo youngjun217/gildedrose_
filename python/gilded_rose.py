@@ -1,6 +1,7 @@
 AGED_BRIE = "Aged Brie"
 BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert"
 SULFURAS  = "Sulfuras, Hand of Ragnaros"
+CONJURED  = "Conjured Mana Cake"
 
 
 class GildedRose(object):
@@ -15,6 +16,8 @@ class GildedRose(object):
                 self._update_backstage(item)
             elif item.name == AGED_BRIE:
                 self._update_aged_brie(item)
+            elif item.name == CONJURED:
+                self._update_conjured(item)
             else:
                 self._update_normal(item)
 
@@ -38,6 +41,11 @@ class GildedRose(object):
             self._increment_quality(item, 2)
         else:
             self._increment_quality(item)
+
+    def _update_conjured(self, item):
+        item.sell_in -= 1
+        amount = 4 if item.sell_in < 0 else 2
+        self._decrement_quality(item, amount)
 
     def _increment_quality(self, item, amount=1):
         item.quality = min(50, item.quality + amount)

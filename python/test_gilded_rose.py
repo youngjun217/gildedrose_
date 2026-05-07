@@ -4,6 +4,7 @@ from gilded_rose import Item, GildedRose
 BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert"
 SULFURAS = "Sulfuras, Hand of Ragnaros"
 AGED_BRIE = "Aged Brie"
+CONJURED = "Conjured Mana Cake"
 
 
 def update(items):
@@ -138,6 +139,40 @@ def test_backstage_pass_at_max_quality_does_not_exceed_50():
     items = update([Item(BACKSTAGE, 15, 50)])
     assert items[0].quality == 50
     assert items[0].sell_in == 14
+
+
+# ---------------------------------------------------------------------------
+# Conjured
+# ---------------------------------------------------------------------------
+
+def test_conjured_decreases_quality_by_2_before_sell_date():
+    items = update([Item(CONJURED, 5, 10)])
+    assert items[0].quality == 8
+    assert items[0].sell_in == 4
+
+
+def test_conjured_zero_quality_stays_zero():
+    items = update([Item(CONJURED, 5, 0)])
+    assert items[0].quality == 0
+    assert items[0].sell_in == 4
+
+
+def test_conjured_quality_does_not_go_below_zero():
+    items = update([Item(CONJURED, 5, 1)])
+    assert items[0].quality == 0
+    assert items[0].sell_in == 4
+
+
+def test_conjured_decreases_quality_by_4_after_sell_date():
+    items = update([Item(CONJURED, 0, 10)])
+    assert items[0].quality == 6
+    assert items[0].sell_in == -1
+
+
+def test_conjured_quality_does_not_go_below_zero_after_sell_date():
+    items = update([Item(CONJURED, 0, 3)])
+    assert items[0].quality == 0
+    assert items[0].sell_in == -1
 
 
 # ---------------------------------------------------------------------------
