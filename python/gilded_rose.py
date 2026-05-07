@@ -12,24 +12,23 @@ class GildedRose(object):
             if item.name == SULFURAS:
                 continue
 
-            if item.name != AGED_BRIE and item.name != BACKSTAGE:
-                self._decrement_quality(item)
-            else:
-                self._increment_quality(item)
-                if item.name == BACKSTAGE:
-                    if item.sell_in < 11:
-                        self._increment_quality(item)
-                    if item.sell_in < 6:
-                        self._increment_quality(item)
             item.sell_in -= 1
-            if item.sell_in < 0:
-                if item.name != AGED_BRIE:
-                    if item.name != BACKSTAGE:
-                        self._decrement_quality(item)
-                    else:
-                        item.quality = 0
+
+            if item.name == BACKSTAGE:
+                if item.sell_in < 0:
+                    item.quality = 0
+                elif item.sell_in < 5:
+                    self._increment_quality(item, 3)
+                elif item.sell_in < 10:
+                    self._increment_quality(item, 2)
                 else:
                     self._increment_quality(item)
+            elif item.name == AGED_BRIE:
+                amount = 2 if item.sell_in < 0 else 1
+                self._increment_quality(item, amount)
+            else:
+                amount = 2 if item.sell_in < 0 else 1
+                self._decrement_quality(item, amount)
 
     def _increment_quality(self, item, amount=1):
         item.quality = min(50, item.quality + amount)
